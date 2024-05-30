@@ -1,18 +1,17 @@
-// /server.js
-import express from "express";
-import { json } from "body-parser";
-import marked from "marked";
-import cors from "cors";
+const express = require("express");
+const bodyParser = require("body-parser");
+const marked = require("marked");
+const cors = require("cors");
 
 const app = express();
 const PORT = 4000;
 
-app.use(json());
+app.use(bodyParser.json());
 app.use(cors());
 
 app.post("/convert", (req, res) => {
   const { markdown } = req.body;
-  const html = marked(markdown);
+  const html = marked.parse(markdown);
   res.send({ html });
 });
 
