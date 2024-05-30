@@ -26,6 +26,8 @@
 
 import React, { useState } from "react";
 import axios from "axios";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { darcula } from "react-syntax-highlighter/dist/esm/styles/prism";
 import "./App.css";
 
 function App() {
@@ -54,7 +56,12 @@ function App() {
         onChange={handleInputChange}
         placeholder="Type your markdown here..."
       />
-      <div className="preview" dangerouslySetInnerHTML={{ __html: html }} />
+      <div className="preview">
+        <SyntaxHighlighter language="markdown" style={darcula}>
+          {markdown}
+        </SyntaxHighlighter>
+        <div dangerouslySetInnerHTML={{ __html: html }} />
+      </div>
     </div>
   );
 }
